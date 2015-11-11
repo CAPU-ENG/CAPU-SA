@@ -13,7 +13,8 @@ local_user=capu
 # MySQL
 mysql_user=root
 mysql_passwd=19951025
-database="capubbs capurace"
+database="capubbs"
+#database="capubbs capurace"
 
 # DB dump dir default, better use absolute path
 dumpdir=$wd/dump
