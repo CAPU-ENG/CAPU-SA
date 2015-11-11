@@ -5,14 +5,14 @@
 # By Jack @ 2015-03-23
 
 # working directory
-wd=/home/capu/work/
+wd=/home/
 
 # uesr on this website, using for crontab
 local_user=capu
 
 # MySQL
 mysql_user=root
-mysql_passwd=19951025
+mysql_passwd=blahblah
 database="capubbs"
 #database="capubbs capurace"
 
@@ -20,7 +20,7 @@ database="capubbs"
 dumpdir=$wd/dump
 
 # backup server
-server_ip=123.131.52.108
+server_ip=some_ip
 server_user=capu
 targetdir="~"/capubbs_mysql_backup
 
