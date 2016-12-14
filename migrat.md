@@ -29,6 +29,11 @@ mysql -uroot -p < foo.sql
    </Directory> 
 </VirtualHost> 
 ```
+See also `vhost.conf.example`.
 
 # HTTPS
-TO-BE-DONE
+Use [letsencypt](https://certbot.eff.org/#ubuntuxenial-apache)
+```
+sudo apt install letsencrypt python-letsencrypt-apache
+sudo letsencypt --apache -d <FQDN>
+```

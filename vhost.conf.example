@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+	DocumentRoot <absolute-path-to-CAPUBBS>
+	ServerName <FQDN>
+	<Directory />
+		AddDefaultCharset UTF-8
+		<IfModule mod_authz_core.c>
+			# Apache 2.4
+			Require all granted
+		</IfModule>
+	    <IfModule !mod_authz_core.c>
+			# Apache 2.2
+			Order Deny,Allow
+			Allow from all
+		</IfModule>
+	</Directory>
+	ErrorLog logs/chexie.net-error_log
+	CustomLog logs/chexie.net-access_log common
+	LoadModule bw_module    modules/mod_bw.so
+	BandWidthModule On
+	ForceBandWidthModule On
+	BandWidth all 100000
+</VirtualHost>
+
