@@ -7,34 +7,29 @@ by Jack
 sudo apt install mysql-server apache2 apache2-utils phpmyadmin
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
-sudo apt-get install php5.6 php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6
+sudo apt-get install php5.6 php5.6-gd php5.6-fpm php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6
 sudo apt install php5.6-curl php5.6-xml
-sudo a2dismod php7.0; sudo a2enmod php5.6; sudo service apache2 restart
+sudo a2dismod php7.0
+sudo a2enmod php5.6
+sudo a2enmod sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php5.6-fpm
+sudo service apache2 restart
 sudo update-alternatives --set php /usr/bin/php5.6
+sudo service php5.6-fpm restart
 ```
 
 # MySql settings
-1. Import data; only excute once.
+Import data; only excute once.
 ```
 mysql -uroot -p < foo.sql
 ```
 
-2. Change `sql_mode`
-```
-mysql > SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
-```
-or add
-```
-[mysqld]  
-sql_mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
-```
-to `/etc/mysql/my.cnf`
-
-# Bbs src
+# CAPUBBS src
 ```
 git clone <git-src-url>
 sudo mv CAPUBBS /var/www
-ln -s /var/www/CAPUBBS .
+ln -s /var/www/CAPUBBS
+sudo chgrp www-date CAPUBBS/bbs/images CAPUBBS/attachment
 ```
 
 # Apache minimal conf
