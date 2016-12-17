@@ -2,7 +2,7 @@
 by Jack
 2016.12.14
 
-# install php5.6
+# Installation of php5.6 on Ubuntu 16.04 lts
 ```
 sudo apt install mysql-server apache2 apache2-utils phpmyadmin
 sudo add-apt-repository ppa:ondrej/php
@@ -13,21 +13,36 @@ sudo a2dismod php7.0; sudo a2enmod php5.6; sudo service apache2 restart
 sudo update-alternatives --set php /usr/bin/php5.6
 ```
 
-# database
-Only excute once.
+# MySql settings
+1. Import data; only excute once.
 ```
 mysql -uroot -p < foo.sql
+```
+
+2. Change `sql_mode`
+```
+mysql > SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+```
+or add
+```
+[mysqld]  
+sql_mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+```
+to `/etc/mysql/my.cnf`
+
+# Bbs src
+```
+git clone <git-src-url>
+sudo mv CAPUBBS /var/www
+ln -s /var/www/CAPUBBS .
 ```
 
 # Apache minimal conf
 ```
 <VirtualHost *:80> 
   ServerAdmin webmaster@localhost 
-  DocumentRoot /<path>/<to>/CAPUBBS 
+  DocumentRoot /var/www/CAPUBBS 
   ServerName chexie.net 
-  <Directory /> 
-    Require all granted 
-  </Directory> 
 </VirtualHost> 
 ```
 See also `vhost.conf.example`.
