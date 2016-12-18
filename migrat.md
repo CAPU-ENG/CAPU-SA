@@ -48,12 +48,3 @@ Use [letsencypt](https://certbot.eff.org/#ubuntuxenial-apache)
 sudo apt install letsencrypt python-letsencrypt-apache
 sudo letsencypt --apache -d <FQDN>
 ```
-
-# Perl cgi
-```
-sudo chown root /var/www/CAPUBBS/cgi-bin/*
-sudo ln -s /var/www/CAPUBBS/cgi-bin/* /usr/lib/cgi-bin/
-sudo a2enmod cgi
-sudo a2enconf serve-cgi-bin.conf
-sudo service apache2 restart
-```
